@@ -1,23 +1,80 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Book | NAKURENT</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<header>
+<header class="page-header">
+  <button class="back-btn" onclick="history.back()">⬅ Back</button>
   <h1>Book a Rental</h1>
 </header>
 
-<div class="container">
-  <div class="card">
-    <p>You are logged in. Choose your house.</p>
-    <button onclick="alert('Booking submitted!')">Confirm Booking</button>
-  </div>
-</div>
+<main class="container">
 
-<script src="app.js"></script>
+  <div class="card">
+    <h2 class="section-title">Booking Details</h2>
+    <p class="section-subtitle">
+      Select your preferred rental and submit your booking request
+    </p>
+
+    <form onsubmit="event.preventDefault(); submitBooking();">
+
+      <div class="form-group">
+        <label for="propertyType">Property Type</label>
+        <select id="propertyType" required>
+          <option value="">-- Select House Type --</option>
+          <option value="Single Room - KSh 2,500">Single Room – KSh 2,500</option>
+          <option value="Double Room - KSh 4,000">Double Room – KSh 4,000</option>
+          <option value="Bedsitter - KSh 5,000">Bedsitter – KSh 5,000</option>
+          <option value="One Bedroom - KSh 8,000">One Bedroom – KSh 8,000</option>
+          <option value="Two Bedroom - KSh 12,000">Two Bedroom – KSh 12,000</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="moveIn">Preferred Move-in Date</label>
+        <input type="date" id="moveIn" required>
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Additional Notes (optional)</label>
+        <textarea id="notes" rows="3" placeholder="Any special requests..."></textarea>
+      </div>
+
+      <button type="submit" class="primary-btn">
+        Submit Booking Request
+      </button>
+
+    </form>
+
+    <p id="bookingMsg" class="message"></p>
+
+  </div>
+
+</main>
+
+<footer>
+  © 2026 NAKURENT • We’ll contact you after review
+</footer>
+
+<script>
+  function submitBooking() {
+    const type = document.getElementById("propertyType").value;
+    const date = document.getElementById("moveIn").value;
+
+    if (!type || !date) {
+      document.getElementById("bookingMsg").innerText =
+        "Please select a property and move-in date.";
+      return;
+    }
+
+    document.getElementById("bookingMsg").innerText =
+      "Booking request submitted successfully! We’ll contact you soon.";
+  }
+</script>
+
 </body>
 </html>
-
