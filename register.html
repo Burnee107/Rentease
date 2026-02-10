@@ -8,14 +8,15 @@
 <body>
 
 <header class="page-header">
-  <button class="back-btn" onclick="history.back()">? Back</button>
-  <h1>Register</h1>
+  <button class="back-btn" onclick="history.back()">⬅ Back</button>
+  <h1>Create Account</h1>
 </header>
 
 <main class="container">
   <div class="card register-card">
 
-    <form onsubmit="event.preventDefault(); register();">
+    <!-- STEP 1: REGISTER -->
+    <form id="registerForm" onsubmit="event.preventDefault(); register();">
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="Enter your email" required>
@@ -26,7 +27,22 @@
         <input type="password" id="password" placeholder="Create a password" required>
       </div>
 
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+      </div>
+
       <button type="submit" class="register-btn">Register</button>
+    </form>
+
+    <!-- STEP 2: VERIFY EMAIL -->
+    <form id="verifyForm" style="display:none;" onsubmit="event.preventDefault(); verifyCode();">
+      <div class="form-group">
+        <label for="code">Verification Code</label>
+        <input type="text" id="code" placeholder="Enter verification code" required>
+      </div>
+
+      <button type="submit" class="primary-btn">Verify Email</button>
     </form>
 
     <p id="msg" class="message"></p>
@@ -37,4 +53,3 @@
 <script src="app.js"></script>
 </body>
 </html>
-
